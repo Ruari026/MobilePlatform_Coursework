@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.me.gcu.equakestartercode">
+    package="org.me.MobilePlatformDev_EarthquakeApp">
 
     <application
         android:usesCleartextTraffic="true"
@@ -10,12 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EQuakeStarterCode">
+        <!--android:configChanges=”orientation|screenSize-->
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ListActivity">
+        </activity>
+
+        <activity android:name=".MapActivity">
+        </activity>
+
+        <activity android:name=".DetailsActivity">
         </activity>
     </application>
 

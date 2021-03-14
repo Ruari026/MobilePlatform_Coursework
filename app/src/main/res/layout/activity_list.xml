@@ -3,9 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:transitionName="AppStart">
 
-    <!--  -->
     <TextView
         android:id="@+id/salutation"
         android:layout_width="fill_parent"
@@ -19,19 +18,17 @@
     <TextView
         android:id="@+id/acknowledgement"
         android:layout_width="fill_parent"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
         android:text="Contains British Geological Survey materials ©NERC 2019"
         android:textAlignment="center"
         android:textSize="20sp"
         android:transitionName="SubtitleStartAnim"
         />
 
-<Button
-    android:id="@+id/startButton"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Press to switch to the earthquake page"
-    android:textAlignment="center"
-    android:transitionName="ButtonStartAnim"
-    />
+    <FrameLayout
+        android:id="@+id/fragmentList"
+        class="org.me.MobilePlatformDev_EarthquakeApp.EarthquakeListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

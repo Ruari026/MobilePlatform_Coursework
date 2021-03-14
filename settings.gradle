@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "EQuakeStarterCode"
+rootProject.name = "MobilePlatformDev_EarthquakeApp"
