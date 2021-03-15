@@ -52,7 +52,7 @@ public class EarthquakeListFragment extends ListFragment
     {
         public EarthquakesAdapter(Context context)
         {
-            super(context, 0, ListActivity.parsedEarthquakeInfo);
+            super(context, 0, EarthquakeDataManager.Instance().GetEarthquakeInfos());
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)

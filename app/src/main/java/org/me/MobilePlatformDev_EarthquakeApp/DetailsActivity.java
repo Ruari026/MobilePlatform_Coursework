@@ -1,6 +1,5 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.time.format.DateTimeFormatter;
 
-public class DetailsActivity extends AppCompatActivity implements View.OnClickListener
+public class DetailsActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback
 {
+    EarthquakeInfo theInfo;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         Log.e("MyTag","onCreate: Details Activity");
 
         // More Code goes here
-        EarthquakeInfo earthquakeInfo = (EarthquakeInfo) getIntent().getSerializableExtra("EarthquakeInfo");
+        theInfo = (EarthquakeInfo) getIntent().getSerializableExtra("EarthquakeInfo");
         //Log.e("MyTag","onCreate: Info found for - " + earthquakeInfo.title);
 
         // Getting specific ui elements
@@ -35,29 +43,42 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         TextView linkTextView = (TextView) findViewById(R.id.earthquakeLink);
 
         // Showing requested earthquake details
-        String location = earthquakeInfo.descriptionElements.get("Location");
+        String location = theInfo.descriptionElements.get("Location");
         location = location.replace(",", ", ");
         locationTextView.setText(location);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yy");
-        String dateTime = earthquakeInfo.date.format(formatter).replace(" ", "-");
+        String dateTime = theInfo.date.format(formatter).replace(" ", "-");
         dateTextView.setText(dateTime);
 
-        String latitude = earthquakeInfo.latitude.toString();
+        String latitude = theInfo.latitude.toString();
         latitudeTextView.setText(latitude);
 
-        String longitude = earthquakeInfo.longitude.toString();
+        String longitude = theInfo.longitude.toString();
         longitudeTextView.setText(longitude);
 
-        String depth = earthquakeInfo.descriptionElements.get("Depth").toString();
+        String depth = theInfo.descriptionElements.get("Depth").toString();
         depthTextView.setText(depth);
 
-        String link = earthquakeInfo.link;
+        String link = theInfo.link;
         linkTextView.setText(link);
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     public void onClick(View aview)
     {
         Log.e("MyTag","onClick: Map Activity");
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap)
+    {
+        LatLng glasgow = new LatLng(theInfo.latitude,theInfo.longitude);
+
+        googleMap.addMarker(new MarkerOptions().position(glasgow).title("Earthquake Marker"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(glasgow, 7.5f));
     }
 }
