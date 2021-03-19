@@ -26,12 +26,21 @@
         android:transitionName="SubtitleStartAnim"
         />
 
-<Button
-    android:id="@+id/startButton"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Press to switch to the earthquake page"
-    android:textAlignment="center"
-    android:transitionName="ButtonStartAnim"
-    />
+    <Button
+        android:id="@+id/startListButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Press to switch to the earthquake list page"
+        android:textAlignment="center"
+        android:transitionName="ButtonStartAnim"
+        />
+
+    <Button
+        android:id="@+id/startMapButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Press to switch to the earthquake map page"
+        android:textAlignment="center"
+        android:transitionName="ButtonStartAnim"
+        />
 </LinearLayout>

@@ -70,7 +70,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     public void onClick(View aview)
     {
-        Log.e("MyTag","onClick: Map Activity");
+        Log.e("MyTag","onClick: Details Activity");
     }
 
     @Override
