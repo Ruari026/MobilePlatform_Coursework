@@ -1,5 +1,6 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
 
@@ -129,4 +130,42 @@ public class EarthquakeInfo implements Serializable
     Getters
     ========================================================================================================================================================================================================
     */
+    /**
+     *  Gets the earthquake's magnitude from the parsed description
+     */
+    public float GetStrengthValue()
+    {
+        float strength = Float.parseFloat(descriptionElements.get("Magnitude"));
+        return strength;
+    }
+
+
+    /**
+     *  Gets a color based on the earthquake's magnitude value
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public int GetStrengthColor()
+    {
+        float strength = GetStrengthValue();
+        if (strength >= 0.0f && strength < 2.5f)
+        {
+            float lerp = (strength - 0.0f) / 2.5f;
+            return Utility.ColorLerp(Color.BLUE, Color.GREEN, lerp);
+        }
+        else if (strength >= 2.5f && strength < 5.0f)
+        {
+            float lerp = (strength - 2.5f) / 2.5f;
+            return Utility.ColorLerp(Color.GREEN, Color.YELLOW, lerp);
+        }
+        else if (strength >= 5.0f && strength < 7.5f)
+        {
+            float lerp = (strength - 5.0f) / 2.5f;
+            return Utility.ColorLerp(Color.YELLOW, Color.parseColor("#FFA500"), lerp);
+        }
+        else
+        {
+            float lerp = (strength - 7.5f) / 2.5f;
+            return Utility.ColorLerp(Color.parseColor("#FFA500"), Color.RED, lerp);
+        }
+    }
 }

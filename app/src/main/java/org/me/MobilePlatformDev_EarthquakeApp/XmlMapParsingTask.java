@@ -92,6 +92,7 @@ public class XmlMapParsingTask extends AsyncTask<Void, Void, Void>
         Log.e("MyTag", "A Sync Task Finished: XML Parsing");
 
         // Hide Loading Icon
+
         // Create List of interactable fragments
         mActivity.mapFragment.getMapAsync(mActivity);
     }

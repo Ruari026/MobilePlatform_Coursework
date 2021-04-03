@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.time.format.DateTimeFormatter;
@@ -78,7 +79,11 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     {
         LatLng glasgow = new LatLng(theInfo.latitude,theInfo.longitude);
 
-        googleMap.addMarker(new MarkerOptions().position(glasgow).title("Earthquake Marker"));
+        Marker marker = googleMap.addMarker(new MarkerOptions().position(glasgow).title("Earthquake Marker"));
+        marker.showInfoWindow();
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(glasgow, 7.5f));
+
+        googleMap.getUiSettings().setMapToolbarEnabled(true);
+        googleMap.getUiSettings().setAllGesturesEnabled(false);
     }
 }

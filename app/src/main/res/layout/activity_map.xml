@@ -12,52 +12,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/earthquake_app_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ViewSwitcher
+            android:id="@+id/mapSwitcher"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="fill_parent">
 
-            <ImageView
-                android:id="@+id/appIcon"
-                android:layout_width="100sp"
-                android:layout_height="100sp"
-                android:transitionName="IconStartAnim"
-                app:srcCompat="@drawable/earthquake" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
 
-            <LinearLayout
+                <ImageView
+                    android:id="@+id/loadingIcon"
+                    android:layout_width="200sp"
+                    android:layout_height="200sp" />
+
+            </RelativeLayout>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/salutation"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Welcome to Mobile Platform Development"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    android:transitionName="TitleStartAnim" />
-
-                <TextView
-                    android:id="@+id/acknowledgement"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contains British Geological Survey materials ©NERC 2019"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    android:transitionName="SubtitleStartAnim" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            tools:context="myandroidstuff.me.org.mapflipperexample.MapsFlipperActivity" />
+                tools:context="myandroidstuff.me.org.mapflipperexample.MapsFlipperActivity" />
+        </ViewSwitcher>
 
     </LinearLayout>
 
@@ -65,9 +49,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5sp"
-        android:layout_marginBottom="5sp"
-        android:background="@drawable/rounded_corners_medium">
+        android:layout_marginStart="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginBottom="5sp">
 
         <include
             layout="@layout/earthquake_item_fragment"

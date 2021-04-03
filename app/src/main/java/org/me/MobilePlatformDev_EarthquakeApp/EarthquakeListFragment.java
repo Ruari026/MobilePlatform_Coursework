@@ -114,34 +114,12 @@ public class EarthquakeListFragment extends ListFragment
             dateTextView.setText(dateTime);
 
             // Earthquake Strength (Color)
-            float strength = Float.parseFloat(info.descriptionElements.get("Magnitude"));
-            int color = Color.BLACK;
-            if (strength >= 0.0f && strength < 2.5f)
-            {
-                float lerp = (strength - 0.0f) / 2.5f;
-                color = Utility.ColorLerp(Color.BLUE, Color.GREEN, lerp);
-            }
-            else if (strength >= 2.5f && strength < 5.0f)
-            {
-                float lerp = (strength - 2.5f) / 2.5f;
-                color = Utility.ColorLerp(Color.GREEN, Color.YELLOW, lerp);
-            }
-            else if (strength >= 5.0f && strength < 7.5f)
-            {
-                float lerp = (strength - 5.0f) / 2.5f;
-                color = Utility.ColorLerp(Color.YELLOW, Color.parseColor("#FFA500"), lerp);
-            }
-            else if (strength >= 7.5f && strength < 10.0f)
-            {
-                float lerp = (strength - 7.5f) / 2.5f;
-                color = Utility.ColorLerp(Color.parseColor("#FFA500"), Color.RED, lerp);
-            }
             LayerDrawable icon = (LayerDrawable) strengthImageView.getDrawable();
-            icon.findDrawableByLayerId(R.id.icon_background).setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-            strengthTextView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+            icon.findDrawableByLayerId(R.id.icon_background).setColorFilter(info.GetStrengthColor(), PorterDuff.Mode.MULTIPLY);
+            strengthTextView.getBackground().setColorFilter(info.GetStrengthColor(), PorterDuff.Mode.MULTIPLY);
 
             // Earthquake Strength (Text)
-            strengthTextView.setText(info.descriptionElements.get("Magnitude"));
+            strengthTextView.setText(String.valueOf(info.GetStrengthValue()));
 
             return convertView;
         }
