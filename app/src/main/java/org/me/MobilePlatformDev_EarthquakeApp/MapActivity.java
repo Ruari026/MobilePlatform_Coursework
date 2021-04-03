@@ -1,16 +1,22 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowInsetsAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +33,10 @@ import java.util.ArrayList;
 
 public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback, View.OnClickListener
 {
+    private TextView titleText = null;
+    private TextView subtitleText = null;
+    private ImageView appIcon = null;
+
     public SupportMapFragment mapFragment = null;
     private View detailsView = null;
     private Marker lastClickedMarker = null;
@@ -38,7 +48,10 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
         setContentView(R.layout.activity_map);
         Log.e("MyTag","onCreate: Map Activity");
 
-        // Getting the details view at the bottom of the page
+        titleText = (TextView)findViewById(R.id.salutation);
+        subtitleText = (TextView)findViewById(R.id.acknowledgement);
+        appIcon = (ImageView)findViewById(R.id.appIcon);
+
         detailsView = findViewById(R.id.earthquake_item);
         detailsView.findViewById(R.id.detailsButton).setOnClickListener(this);
 
@@ -61,8 +74,15 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
         // Passing the selected earthquake info to the next activity
         newActivity.putExtra("EarthquakeInfo", info);
 
+        // Setting up activity switch animation
+        Pair<View, String> p1 = Pair.create((View)titleText, "TitleStartAnim");
+        Pair<View, String> p2 = Pair.create((View)subtitleText, "SubtitleStartAnim");
+        Pair<View, String> p3 = Pair.create((View)appIcon, "IconStartAnim");
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MapActivity.this, p1, p2, p3);
+
         // Switching activities
-        startActivity(newActivity);
+        startActivity(newActivity, options.toBundle());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -77,19 +97,49 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
 
         TextView locationTextView = (TextView) detailsView.findViewById(R.id.earthquakeLocation);
         TextView dateTextView = (TextView) detailsView.findViewById(R.id.earthquakeDate);
-        TextView linkTextView = (TextView) detailsView.findViewById(R.id.earthquakeLink);
-        View buttonView = detailsView.findViewById(R.id.earthquake_item);
+        ImageView strengthImageView = (ImageView) detailsView.findViewById(R.id.earthquakeStrengthIcon);
+        TextView strengthTextView = (TextView) detailsView.findViewById(R.id.earthquakeStrengthValue);
 
         // Populate the data into the template view using the data object
+        // Earthquake Location
         String location = info.descriptionElements.get("Location");
         location = location.replace(",", ", ");
         locationTextView.setText(location);
 
+        // Earthquake Date & Time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yy");
         String dateTime = info.date.format(formatter).replace(" ", "-");
         dateTextView.setText(dateTime);
 
-        linkTextView.setText(info.link);
+        // Earthquake Strength (Color)
+        float strength = Float.parseFloat(info.descriptionElements.get("Magnitude"));
+        int color = Color.BLACK;
+        if (strength >= 0.0f && strength < 2.5f)
+        {
+            float lerp = (strength - 0.0f) / 2.5f;
+            color = Utility.ColorLerp(Color.BLUE, Color.GREEN, lerp);
+        }
+        else if (strength >= 2.5f && strength < 5.0f)
+        {
+            float lerp = (strength - 2.5f) / 2.5f;
+            color = Utility.ColorLerp(Color.GREEN, Color.YELLOW, lerp);
+        }
+        else if (strength >= 5.0f && strength < 7.5f)
+        {
+            float lerp = (strength - 5.0f) / 2.5f;
+            color = Utility.ColorLerp(Color.YELLOW, Color.parseColor("#FFA500"), lerp);
+        }
+        else if (strength >= 7.5f && strength < 10.0f)
+        {
+            float lerp = (strength - 7.5f) / 2.5f;
+            color = Utility.ColorLerp(Color.parseColor("#FFA500"), Color.RED, lerp);
+        }
+        LayerDrawable icon = (LayerDrawable) strengthImageView.getDrawable();
+        icon.findDrawableByLayerId(R.id.icon_background).setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        strengthTextView.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+
+        // Earthquake Strength (Text)
+        strengthTextView.setText(info.descriptionElements.get("Magnitude"));
 
         // Animating the bottom details view to "open"
 

@@ -15,11 +15,14 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EarthquakeDataManager
 {
     private ArrayList<EarthquakeInfo> theInfo = null;
+
+    public LocalDateTime infoTime = null;
 
     /*
     ========================================================================================================================================================================================================

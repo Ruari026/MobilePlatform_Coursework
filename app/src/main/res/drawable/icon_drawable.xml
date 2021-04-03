@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/earthquake_background"
+        android:id="@+id/icon_background"
+        />
+    <item
+        android:drawable="@drawable/earthquake_foreground"
+        android:id="@+id/icon_foreground"/>
+</layer-list>

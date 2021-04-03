@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +14,12 @@ import androidx.core.util.Pair;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private TextView titleText;
-    private TextView subtitleText;
-    private Button listButton;
-    private Button mapButton;
+    private TextView titleText = null;
+    private TextView subtitleText = null;
+    private ImageView appIcon = null;
+
+    private Button listButton = null;
+    private Button mapButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         titleText = (TextView)findViewById(R.id.salutation);
         subtitleText = (TextView)findViewById(R.id.acknowledgement);
+        appIcon = (ImageView)findViewById(R.id.appIcon);
 
         listButton = (Button)findViewById(R.id.startListButton);
         listButton.setOnClickListener(this);
@@ -62,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             // Setting up activity switch animation
-            // For the Main -> List page switch this only affects the Title Text, SubTitle Text, & Main Button
             Pair<View, String> p1 = Pair.create((View)titleText, "TitleStartAnim");
             Pair<View, String> p2 = Pair.create((View)subtitleText, "SubtitleStartAnim");
-            //Pair<View, String> p3 = Pair.create((View)startButton, "ButtonStartAnim");
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1, p2);
+            Pair<View, String> p3 = Pair.create((View)appIcon, "IconStartAnim");
+
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1, p2, p3);
 
             // Switching activities
             startActivity(newActivity, options.toBundle());
