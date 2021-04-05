@@ -110,7 +110,7 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
 
         // Earthquake Date & Time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yy");
-        String dateTime = info.date.format(formatter).replace(" ", "-");
+        String dateTime = info.date.toString();
         dateTextView.setText(dateTime);
 
         // Earthquake Strength (Color)

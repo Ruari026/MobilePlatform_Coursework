@@ -49,7 +49,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         locationTextView.setText(location);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yy");
-        String dateTime = theInfo.date.format(formatter).replace(" ", "-");
+        String dateTime = theInfo.date.toString();
         dateTextView.setText(dateTime);
 
         String latitude = theInfo.latitude.toString();

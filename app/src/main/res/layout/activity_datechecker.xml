@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -54,57 +56,257 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:padding="5sp">
 
-                <FrameLayout
-                    android:id="@+id/earthquake_north"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
 
-                </FrameLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Most Northerly Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <FrameLayout
-                    android:id="@+id/earthquake_east"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/earthquake_north"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <FrameLayout
-                    android:id="@+id/earthquake_south"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    </FrameLayout>
 
-                </FrameLayout>
+                </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/earthquake_west"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
 
-                </FrameLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Most Easterly Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                <FrameLayout
-                    android:id="@+id/earthquake_strongest"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:id="@+id/earthquake_east"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <FrameLayout
-                    android:id="@+id/earthquake_deepest"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    </FrameLayout>
 
-                </FrameLayout>
+                </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/earthquake_shallowest"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
 
-                </FrameLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Most Southerly Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
+
+                    <FrameLayout
+                        android:id="@+id/earthquake_south"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Most Westerly Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
+
+                    <FrameLayout
+                        android:id="@+id/earthquake_west"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Largest Magnitude Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
+
+                    <FrameLayout
+                        android:id="@+id/earthquake_strongest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Deepest Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
+
+                    <FrameLayout
+                        android:id="@+id/earthquake_deepest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/rounded_corners_small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5sp"
+                        android:text="Shallowest Earthquake"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5sp"
+                        android:layout_marginLeft="5sp"
+                        android:layout_marginRight="5sp"
+                        android:background="@drawable/rounded_corners_small"
+                        android:backgroundTint="@color/darkGrey" />
+
+                    <FrameLayout
+                        android:id="@+id/earthquake_shallowest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 

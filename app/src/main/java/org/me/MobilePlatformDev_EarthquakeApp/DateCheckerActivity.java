@@ -1,6 +1,7 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DateCheckerActivity extends AppCompatActivity implements View.OnClickListener
@@ -24,6 +27,7 @@ public class DateCheckerActivity extends AppCompatActivity implements View.OnCli
         STATE_SHOWINFO
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,17 +42,26 @@ public class DateCheckerActivity extends AppCompatActivity implements View.OnCli
         AnimationDrawable loadingIcon = (AnimationDrawable)loadingView.getBackground();
         loadingIcon.start();
 
-        Date fromDate = (Date) getIntent().getSerializableExtra("fromDateCheck");
-        Date toDate = (Date) getIntent().getSerializableExtra("toDateCheck");
+        LocalDate fromDate = (LocalDate) getIntent().getSerializableExtra("fromDateCheck");
+        LocalDate toDate = (LocalDate) getIntent().getSerializableExtra("toDateCheck");
         if (fromDate == null || toDate == null)
         {
-            Toast newToast = Toast.makeText(getBaseContext(), "Error: No Date Given...", Toast.LENGTH_LONG);
+            // Catching if  somehow either date was empty
+            Toast newToast = Toast.makeText(this, "Error: No Date Given...", Toast.LENGTH_LONG);
             newToast.show();
             this.finish();
         }
         else
         {
-            new DateCheckTask(this).execute();
+            // Ensuring that the latest date is set as the to date
+            if (toDate.isBefore(fromDate))
+            {
+                LocalDate temp = fromDate;
+                fromDate = toDate;
+                toDate = temp;
+            }
+
+            new DateCheckTask(this, fromDate, toDate).execute();
         }
     }
 

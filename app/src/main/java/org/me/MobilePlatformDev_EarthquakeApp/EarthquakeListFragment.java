@@ -2,8 +2,6 @@ package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -15,14 +13,11 @@ import androidx.core.util.Pair;
 import androidx.fragment.app.ListFragment;
 
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.time.format.DateTimeFormatter;
@@ -117,7 +112,7 @@ public class EarthquakeListFragment extends ListFragment
 
             // Earthquake Date & Time
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yy");
-            String dateTime = info.date.format(formatter).replace(" ", "-");
+            String dateTime = info.date.toString();
             dateTextView.setText(dateTime);
 
             // Earthquake Strength (Color)

@@ -131,7 +131,7 @@ public class EarthquakeInfo implements Serializable
     ========================================================================================================================================================================================================
     */
     /**
-     *  Gets the earthquake's magnitude from the parsed description
+     *  Gets the earthquake's magnitude from it's parsed description
      */
     public float GetStrengthValue()
     {
@@ -167,5 +167,16 @@ public class EarthquakeInfo implements Serializable
             float lerp = (strength - 7.5f) / 2.5f;
             return Utility.ColorLerp(Color.parseColor("#FFA500"), Color.RED, lerp);
         }
+    }
+
+
+    /**
+     *  Gets the earthquake's depth from it's parsed description
+     */
+    public float GetDepth()
+    {
+        String digits = descriptionElements.get("Depth").replaceAll("[^0-9.]", "");
+        float depth = Float.parseFloat(digits);
+        return depth;
     }
 }

@@ -19,9 +19,12 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -74,6 +77,7 @@ public class EarthquakeDateOptionsFragment extends Fragment
                 dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 dialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener()
                 {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
                     {
@@ -81,10 +85,11 @@ public class EarthquakeDateOptionsFragment extends Fragment
                         calendar.set(year, month, dayOfMonth);
 
                         Date date = calendar.getTime();
+                        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                         String dateString =  new SimpleDateFormat("dd-MMMM-yy").format(date);
 
                         singleDatePicker.setText(dateString);
-                        singleDatePicker.setTag(date);
+                        singleDatePicker.setTag(localDate);
                         dialog.hide();
                     }
                 });
@@ -101,6 +106,7 @@ public class EarthquakeDateOptionsFragment extends Fragment
                 dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 dialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener()
                 {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
                     {
@@ -108,10 +114,11 @@ public class EarthquakeDateOptionsFragment extends Fragment
                         calendar.set(year, month, dayOfMonth);
 
                         Date date = calendar.getTime();
+                        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                         String dateString =  new SimpleDateFormat("dd-MMMM-yy").format(date);
 
                         fromDatePicker.setText(dateString);
-                        fromDatePicker.setTag(date);
+                        fromDatePicker.setTag(localDate);
                         dialog.hide();
                     }
                 });
@@ -128,6 +135,7 @@ public class EarthquakeDateOptionsFragment extends Fragment
                 dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 dialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener()
                 {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
                     {
@@ -135,10 +143,11 @@ public class EarthquakeDateOptionsFragment extends Fragment
                         calendar.set(year, month, dayOfMonth);
 
                         Date date = calendar.getTime();
+                        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                         String dateString =  new SimpleDateFormat("dd-MMMM-yy").format(date);
 
                         toDatePicker.setText(dateString);
-                        toDatePicker.setTag(date);
+                        toDatePicker.setTag(localDate);
                         dialog.hide();
                     }
                 });
@@ -148,10 +157,11 @@ public class EarthquakeDateOptionsFragment extends Fragment
 
         singleDateButton.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v)
             {
-                Date dateToCheck = (Date)singleDatePicker.getTag();
+                LocalDate dateToCheck = (LocalDate)singleDatePicker.getTag();
 
                 if (dateToCheck == null)
                 {
@@ -181,11 +191,12 @@ public class EarthquakeDateOptionsFragment extends Fragment
         });
         rangeDateButton.setOnClickListener(new View.OnClickListener()
         {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v)
             {
-                Date fromDate = (Date)fromDatePicker.getTag();
-                Date toDate = (Date)toDatePicker.getTag();
+                LocalDate fromDate = (LocalDate)fromDatePicker.getTag();
+                LocalDate toDate = (LocalDate)toDatePicker.getTag();
 
                 if (fromDate == null)
                 {
