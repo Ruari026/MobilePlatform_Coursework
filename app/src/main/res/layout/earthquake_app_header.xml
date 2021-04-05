@@ -16,6 +16,7 @@
         app:srcCompat="@drawable/earthquake" />
 
     <LinearLayout
+        android:id="@+id/headerBackground"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="5sp"
@@ -25,10 +26,11 @@
         android:background="@drawable/rounded_corners_small"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:transitionName="BackgroundStartAnim">
 
         <TextView
-            android:id="@+id/salutation"
+            android:id="@+id/headerTitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Welcome to Mobile Platform Development"
@@ -37,7 +39,7 @@
             android:transitionName="TitleStartAnim" />
 
         <TextView
-            android:id="@+id/acknowledgement"
+            android:id="@+id/headerSubtitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Contains British Geological Survey materials ©NERC 2019"

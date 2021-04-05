@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
@@ -14,10 +13,6 @@ import androidx.core.util.Pair;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private TextView titleText = null;
-    private TextView subtitleText = null;
-    private ImageView appIcon = null;
-
     private Button listButton = null;
     private Button mapButton = null;
 
@@ -27,10 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e("MyTag","onCreate: Main Activity");
-
-        titleText = (TextView)findViewById(R.id.salutation);
-        subtitleText = (TextView)findViewById(R.id.acknowledgement);
-        appIcon = (ImageView)findViewById(R.id.appIcon);
 
         listButton = (Button)findViewById(R.id.startListButton);
         listButton.setOnClickListener(this);
@@ -66,11 +57,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             // Setting up activity switch animation
-            Pair<View, String> p1 = Pair.create((View)titleText, "TitleStartAnim");
-            Pair<View, String> p2 = Pair.create((View)subtitleText, "SubtitleStartAnim");
-            Pair<View, String> p3 = Pair.create((View)appIcon, "IconStartAnim");
+            Pair<View, String> p1 = Pair.create((View)this.findViewById(R.id.headerTitle), "TitleStartAnim");
+            Pair<View, String> p2 = Pair.create((View)this.findViewById(R.id.headerSubtitle), "SubtitleStartAnim");
+            Pair<View, String> p3 = Pair.create((View)this.findViewById(R.id.appIcon), "IconStartAnim");
+            Pair<View, String> p4 = Pair.create((LinearLayout)this.findViewById(R.id.headerBackground), "BackgroundStartAnim");
 
-            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1, p2, p3);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1, p2, p3, p4);
 
             // Switching activities
             startActivity(newActivity, options.toBundle());

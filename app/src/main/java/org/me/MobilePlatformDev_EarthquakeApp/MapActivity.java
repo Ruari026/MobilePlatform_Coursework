@@ -1,25 +1,15 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Animatable;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowInsetsAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -28,26 +18,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback, View.OnClickListener
 {
-    private TextView titleText = null;
-    private TextView subtitleText = null;
-    private ImageView appIcon = null;
-
     public SupportMapFragment mapFragment = null;
     public ViewSwitcher mapLoadingSwitcher = null;
     private AnimationDrawable loadingIcon = null;
@@ -61,10 +41,6 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Log.e("MyTag","onCreate: Map Activity");
-
-        titleText = (TextView)findViewById(R.id.salutation);
-        subtitleText = (TextView)findViewById(R.id.acknowledgement);
-        appIcon = (ImageView)findViewById(R.id.appIcon);
 
         detailsView = findViewById(R.id.earthquake_item);
         detailsView.animate().translationY(detailsView.getHeight());
@@ -95,9 +71,9 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
         newActivity.putExtra("EarthquakeInfo", info);
 
         // Setting up activity switch animation
-        Pair<View, String> p1 = Pair.create((View)titleText, "TitleStartAnim");
-        Pair<View, String> p2 = Pair.create((View)subtitleText, "SubtitleStartAnim");
-        Pair<View, String> p3 = Pair.create((View)appIcon, "IconStartAnim");
+        Pair<View, String> p1 = Pair.create((View)this.findViewById(R.id.headerTitle), "TitleStartAnim");
+        Pair<View, String> p2 = Pair.create((View)this.findViewById(R.id.headerSubtitle), "SubtitleStartAnim");
+        Pair<View, String> p3 = Pair.create((View)this.findViewById(R.id.appIcon), "IconStartAnim");
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MapActivity.this, p1, p2, p3);
 

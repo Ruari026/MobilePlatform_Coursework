@@ -16,24 +16,44 @@
         android:transitionName="IconStartAnim"
         app:srcCompat="@drawable/earthquake" />
 
-    <TextView
-        android:id="@+id/salutation"
+    <LinearLayout
+        android:id="@+id/headerBackground"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to Mobile Platform Development"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:transitionName="TitleStartAnim" />
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:background="@drawable/rounded_corners_medium"
+        android:orientation="vertical"
+        android:paddingLeft="10sp"
+        android:paddingTop="5sp"
+        android:paddingRight="10sp"
+        android:paddingBottom="5sp"
+        android:transitionName="BackgroundStartAnim">
 
-    <TextView
-        android:id="@+id/acknowledgement"
-        android:layout_width="fill_parent"
-        android:layout_height="66dp"
-        android:gravity="center"
-        android:text="Contains British Geological Survey materials ©NERC 2019"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:transitionName="SubtitleStartAnim" />
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Mobile Platform Development"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:transitionName="TitleStartAnim" />
+
+        <TextView
+            android:id="@+id/headerSubtitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Contains British Geological Survey materials ©NERC 2019"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:transitionName="SubtitleStartAnim" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -55,8 +75,8 @@
             android:id="@+id/startMapButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="5sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="10sp"
             android:layout_weight="0.5"
             android:text="Press to switch to the earthquake map page"
             android:textAlignment="center"
