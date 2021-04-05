@@ -84,7 +84,7 @@ public class MapLoadingTask extends AsyncTask<Void, Void, Void>
     @Override
     protected void onPostExecute(Void result)
     {
-        mActivity.mapLoadingSwitcher.setDisplayedChild(1);
+        mActivity.ChangeState(MapActivity.MapActivityState.STATE_SHOWMAP);
 
         // Creating marker for every parsed earthquake info
         ArrayList<EarthquakeInfo> earthquakeInfos = EarthquakeDataManager.Instance().GetEarthquakeInfos();
@@ -96,7 +96,7 @@ public class MapLoadingTask extends AsyncTask<Void, Void, Void>
         }
 
         // Moving map camera based on the bounds of all of the earthquake locations
-        theMap.moveCamera(CameraUpdateFactory.newLatLngBounds(mapBuilder.build(), mActivity.mapLoadingSwitcher.getWidth(), mActivity.mapLoadingSwitcher.getHeight(), 50));
+        theMap.moveCamera(CameraUpdateFactory.newLatLngBounds(mapBuilder.build(), mActivity.activityViewFlipper.getWidth(), mActivity.activityViewFlipper.getHeight(), 50));
 
         // Preventing the user from moving the map
         theMap.getUiSettings().setMapToolbarEnabled(false);

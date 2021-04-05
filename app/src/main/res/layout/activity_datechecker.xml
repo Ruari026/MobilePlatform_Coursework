@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_gradient">
+
+    <include
+        layout="@layout/earthquake_app_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ViewFlipper
+        android:id="@+id/activityViewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/loadingIcon"
+                android:layout_width="200sp"
+                android:layout_height="200sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners_medium"
+                android:padding="5sp"
+                android:text="No Earthquakes Found"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5sp">
+
+                <FrameLayout
+                    android:id="@+id/earthquake_north"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_east"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_south"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_west"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_strongest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_deepest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/earthquake_shallowest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </ViewFlipper>
+</LinearLayout>

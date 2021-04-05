@@ -1,17 +1,22 @@
 package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
 import java.text.DateFormat;
@@ -147,6 +152,31 @@ public class EarthquakeDateOptionsFragment extends Fragment
             public void onClick(View v)
             {
                 Date dateToCheck = (Date)singleDatePicker.getTag();
+
+                if (dateToCheck == null)
+                {
+                    Toast newToast = Toast.makeText(getContext(), "Please Input A Date To Check", Toast.LENGTH_SHORT);
+                    newToast.show();
+                }
+                else
+                {
+                    // Getting the next page to move to (Earthquake Date Checker Page)
+                    Intent newActivity = new Intent(view.getContext(), DateCheckerActivity.class);
+
+                    // Passing the selected earthquake info to the next activity
+                    newActivity.putExtra("fromDateCheck", dateToCheck);
+                    newActivity.putExtra("toDateCheck", dateToCheck);
+
+                    // Setting up activity switch animation
+                    Pair<View, String> p1 = Pair.create((View)getActivity().findViewById(R.id.headerTitle), "TitleStartAnim");
+                    Pair<View, String> p2 = Pair.create((View)getActivity().findViewById(R.id.headerSubtitle), "SubtitleStartAnim");
+                    Pair<View, String> p3 = Pair.create((View)getActivity().findViewById(R.id.appIcon), "IconStartAnim");
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
+
+                    // Switching activities
+                    startActivity(newActivity, options.toBundle());
+                }
             }
         });
         rangeDateButton.setOnClickListener(new View.OnClickListener()
@@ -156,6 +186,36 @@ public class EarthquakeDateOptionsFragment extends Fragment
             {
                 Date fromDate = (Date)fromDatePicker.getTag();
                 Date toDate = (Date)toDatePicker.getTag();
+
+                if (fromDate == null)
+                {
+                    Toast newToast = Toast.makeText(getContext(), "Please Input A Date To Check From", Toast.LENGTH_SHORT);
+                    newToast.show();
+                }
+                else if (toDate == null)
+                {
+                    Toast newToast = Toast.makeText(getContext(), "Please Input A Date To Check To", Toast.LENGTH_SHORT);
+                    newToast.show();
+                }
+                else
+                {
+                    // Getting the next page to move to (Earthquake Date Checker Page)
+                    Intent newActivity = new Intent(view.getContext(), DateCheckerActivity.class);
+
+                    // Passing the selected earthquake info to the next activity
+                    newActivity.putExtra("fromDateCheck", fromDate);
+                    newActivity.putExtra("toDateCheck", toDate);
+
+                    // Setting up activity switch animation
+                    Pair<View, String> p1 = Pair.create((View)getActivity().findViewById(R.id.headerTitle), "TitleStartAnim");
+                    Pair<View, String> p2 = Pair.create((View)getActivity().findViewById(R.id.headerSubtitle), "SubtitleStartAnim");
+                    Pair<View, String> p3 = Pair.create((View)getActivity().findViewById(R.id.appIcon), "IconStartAnim");
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
+
+                    // Switching activities
+                    startActivity(newActivity, options.toBundle());
+                }
             }
         });
     }

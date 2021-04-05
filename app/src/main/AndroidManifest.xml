@@ -31,6 +31,9 @@
         <activity android:name=".MapActivity">
         </activity>
 
+        <activity android:name=".DateCheckerActivity">
+        </activity>
+
         <activity android:name=".DetailsActivity">
         </activity>
     </application>

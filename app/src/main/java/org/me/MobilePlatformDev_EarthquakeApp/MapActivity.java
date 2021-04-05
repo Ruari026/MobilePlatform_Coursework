@@ -9,9 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
+import android.widget.ViewFlipper;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,11 +28,18 @@ import java.time.format.DateTimeFormatter;
 public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, OnMapReadyCallback, View.OnClickListener
 {
     public SupportMapFragment mapFragment = null;
-    public ViewSwitcher mapLoadingSwitcher = null;
+    public ViewFlipper activityViewFlipper = null;
     private AnimationDrawable loadingIcon = null;
     public View detailsView = null;
 
     private Marker lastClickedMarker = null;
+
+    private MapActivity.MapActivityState currentState = MapActivity.MapActivityState.STATE_LOADING;
+    public enum MapActivityState
+    {
+        STATE_LOADING,
+        STATE_SHOWMAP
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,7 +55,7 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
         // Obtain the SupportMapFragment
         // map will be notified when the map is ready to be used by the xml map parsing task.
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapLoadingSwitcher = (ViewSwitcher)findViewById(R.id.mapSwitcher);
+        activityViewFlipper = (ViewFlipper)findViewById(R.id.activityViewFlipper);
         ImageView loadingView = (ImageView)findViewById(R.id.loadingIcon);
         loadingView.setBackgroundResource(R.drawable.loading_drawable);
         loadingIcon = (AnimationDrawable)loadingView.getBackground();
@@ -135,5 +141,34 @@ public class MapActivity extends AppCompatActivity implements GoogleMap.OnMarker
     public void onMapReady(GoogleMap googleMap)
     {
         new MapLoadingTask(this, googleMap).execute();
+    }
+
+    public MapActivity.MapActivityState GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public void ChangeState(MapActivity.MapActivityState newState)
+    {
+        if (currentState == newState)
+        {
+            return;
+        }
+
+        currentState = newState;
+        switch (currentState)
+        {
+            case STATE_LOADING:
+            {
+                activityViewFlipper.setDisplayedChild(0);
+            }
+            break;
+
+            case STATE_SHOWMAP:
+            {
+                activityViewFlipper.setDisplayedChild(1);
+            }
+            break;
+        }
     }
 }

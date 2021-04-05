@@ -1,52 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/appHeader"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/appIcon"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:layout_marginLeft="10sp"
-        android:layout_marginRight="5sp"
-        android:transitionName="IconStartAnim"
-        app:srcCompat="@drawable/earthquake" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/headerBackground"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginRight="10sp"
-        android:layout_marginBottom="10sp"
-        android:background="@drawable/rounded_corners_small"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="5sp"
-        android:transitionName="BackgroundStartAnim">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/headerTitle"
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="5sp"
+            android:transitionName="IconStartAnim"
+            app:srcCompat="@drawable/earthquake" />
+
+        <LinearLayout
+            android:id="@+id/headerBackground"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome to Mobile Platform Development"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:transitionName="TitleStartAnim" />
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/rounded_corners_small"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5sp"
+            android:transitionName="BackgroundStartAnim">
 
-        <TextView
-            android:id="@+id/headerSubtitle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Contains British Geological Survey materials ©NERC 2019"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:transitionName="SubtitleStartAnim" />
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome to Mobile Platform Development"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:transitionName="TitleStartAnim" />
 
+            <TextView
+                android:id="@+id/headerSubtitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Contains British Geological Survey materials ©NERC 2019"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:transitionName="SubtitleStartAnim" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
