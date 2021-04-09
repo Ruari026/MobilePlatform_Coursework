@@ -1,3 +1,11 @@
+/*
+==========================================================================================================================================================================================================================================================
+    Mobile Platform Development
+    Ruari McGhee
+    S1432402
+==========================================================================================================================================================================================================================================================
+*/
+
 package org.me.MobilePlatformDev_EarthquakeApp;
 
 import android.content.Context;
@@ -89,8 +97,6 @@ public class XmlListParsingTask extends AsyncTask<Void, Void, Void>
     {
         super.onPostExecute(result);
         Log.e("MyTag", "A Sync Task Finished: XML Parsing");
-
-        // Hide Loading Icon
 
         // Create List of interactable fragments
         EarthquakeListFragment fragment = new EarthquakeListFragment(parsedInfo);

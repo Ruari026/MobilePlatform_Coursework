@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+==========================================================================================================================================================================================================================================================
+    Mobile Platform Development
+    Ruari McGhee
+    S1432402
+==========================================================================================================================================================================================================================================================
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +15,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -39,7 +46,7 @@
                 android:id="@+id/headerTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome to Mobile Platform Development"
+                android:text="Mobile Platform Development - S1432402"
                 android:textAlignment="center"
                 android:textSize="14sp"
                 android:transitionName="TitleStartAnim" />

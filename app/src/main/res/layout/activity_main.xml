@@ -1,3 +1,10 @@
+<!--
+==========================================================================================================================================================================================================================================================
+    Mobile Platform Development
+    Ruari McGhee
+    S1432402
+==========================================================================================================================================================================================================================================================
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +41,7 @@
             android:id="@+id/headerTitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Mobile Platform Development"
+            android:text="Mobile Platform Development - S1432402"
             android:textAlignment="center"
             android:textSize="18sp"
             android:transitionName="TitleStartAnim" />
